@@ -56,11 +56,12 @@ uvicorn todo:app --reload
 - **"completed"**: bool
 
 **Example:**
-`/update_task/3
+`/update_task/3`
 ```json
 {
     "title": "Task 3",
-    "content": "New content"
+    "content": "New content",
+    "completed": true
 }
 ```
 

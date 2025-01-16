@@ -1,23 +1,16 @@
 from fastapi import FastAPI
 from sqlalchemy.orm import DeclarativeBase, Session, mapped_column, Mapped
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine
 from sqlalchemy.types import String, Integer, DateTime, Boolean
 from pydantic import BaseModel
 from typing import Optional
-
-
 from datetime import datetime
 
-app = FastAPI()
-
-# Default Data Class
-class Base(DeclarativeBase):
+# Default table class
+class Base(DeclarativeBase): 
     pass
 
-# Create Engine
-engine = create_engine(url='sqlite:///base.db')
-
-# Notes Table
+# ORM Table class
 class Tasks(Base):
     __tablename__ = 'Notes'
 
@@ -27,14 +20,19 @@ class Tasks(Base):
     completed: Mapped[Boolean] = mapped_column(Boolean, default=False)
     date: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
 
-# Note for validation
+
+# Pydantic validation class
 class Task(BaseModel):
     title: str
     content: str
     completed: Optional[bool] = False
 
 
-# Creating Tables
+# Create API app
+app = FastAPI()
+
+# Create engine & table
+engine = create_engine(url='sqlite:///base.db')
 Base.metadata.create_all(engine)
 
 

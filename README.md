@@ -1,6 +1,6 @@
 # Simple TODO
 
-**Very simpl TODO REST API for Python + SQLAlchemy**
+**Very simple TODO REST API for Python + SQLAlchemy**
 
 ## Stack
 - **Python3**
